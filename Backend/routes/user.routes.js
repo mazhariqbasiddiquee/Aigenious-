@@ -67,7 +67,7 @@ userRouter.get('/generate-questions', auth,async (req, res) => {
           {
               method: 'POST',
               body: JSON.stringify({
-                  prompt: `Act as an interviewer and ask interview questions for a ${prompt} interview one by one.`,
+                  prompt: prompt,
                   max_tokens: 2048
               }),
               headers: {
