@@ -57,7 +57,7 @@ userRouter.post("/login",async(req,res)=>{
 
 
 userRouter.get('/generate-questions', auth,async (req, res) => {
-  const {interviewType} = req.body;
+  const {prompt} = req.body;
   try {
       const fetchModule = await import("node-fetch");
       const fetch = fetchModule.default;
@@ -67,8 +67,8 @@ userRouter.get('/generate-questions', auth,async (req, res) => {
           {
               method: 'POST',
               body: JSON.stringify({
-                  prompt: `Act as an interviewer and ask interview questions for a ${interviewType} interview one by one.`,
-                  max_tokens: 15
+                  prompt: `Act as an interviewer and ask interview questions for a ${prompt} interview one by one.`,
+                  max_tokens: 2048
               }),
               headers: {
                   'Content-Type': 'application/json',
