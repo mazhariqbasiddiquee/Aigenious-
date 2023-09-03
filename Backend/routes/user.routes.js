@@ -6,6 +6,7 @@ const QuestionModel=require("../model.js/question.model")
 const bcrypt = require('bcrypt')
 const auth=require("../middleware/auth.middleare")
 var jwt = require('jsonwebtoken')
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 
 userRouter.post("/register",async(req,res)=>{
@@ -42,7 +43,7 @@ userRouter.post("/login",async(req,res)=>{
            // result == true
            if(result){
                var token = jwt.sign({ id:user._id}, 'conpic');
-               res.status(200).json({msg:"Login Successfull !!",token:token})
+               res.status(200).json({msg:"Login Successfull !!",token:token,user})
            }else{
                res.status(200).json({msg:"Please check your Password !!"})
            }
@@ -56,51 +57,34 @@ userRouter.post("/login",async(req,res)=>{
 })
 
 
-userRouter.get('/generate-questions', auth,async (req, res) => {
-  const {prompt} = req.body;
-  try {
-      const fetchModule = await import("node-fetch");
-      const fetch = fetchModule.default;
-
-      const response = await fetch(
-          'https://api.openai.com/v1/engines/text-davinci-003/completions',
-          {
-              method: 'POST',
-              body: JSON.stringify({
-                  prompt: prompt,
-                  max_tokens: 2048
-              }),
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${process.env.OPEN_API_KEY}`
-              }
-          }
-      );
-
+userRouter.post('/generate-questions', auth,async (req, res) => {
+    const userMessage = req.body.prompt; // User's message from request body
+    
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer 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`,
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "system", content: "You are the interviewer. You can ask questions." }, { role: "user", content: userMessage }],
+          max_tokens: 1000, // Adjust as needed
+        }),
+      });
+  
       const responseBody = await response.json();
-      console.log(responseBody)
-      const questions = responseBody.choices[0].text.trim();
+      const answer = responseBody.choices[0].text;
+  
       
-      //req.body.userId
-      //to store questions in mongodb
-      const question=new QuestionModel({Q:questions,userId:req.body.userId})
-      console.log(question)
-      try {
-        await question.save();
-        res.json({ msg: "Question has been saved successfully", text:question });
-      } catch (error) {
-        console.error('Error saving question:', error);
-        res.status(500).json({ error: 'An error occurred while saving the question' });
-      }
-     
-
-      // res.json({msg:"questions has been saved successfully",questions });
-  } catch (error) {
+      console.log(responseBody.choices[0].message.content);
+      res.json({ text: responseBody.choices[0].message.content});
+    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'An error occurred' });
-  }
-});
-
+    }
+  });
 
 
 module.exports=userRouter
