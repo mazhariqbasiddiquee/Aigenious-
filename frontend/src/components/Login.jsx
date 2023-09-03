@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
+  const navigate=useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,7 +22,7 @@ function LoginForm() {
     try {
       // Send the login data as a POST request
       const response = await fetch(
-        "https://stormy-plum-walrus.cyclic.app/user/login",
+        " http://localhost:8080/user/login",
         {
           method: "POST",
           headers: {
@@ -33,13 +35,17 @@ function LoginForm() {
       if (response.ok) {
         // Assuming the response contains a token, extract it
         const data = await response.json();
+        console.log(data)
         const { token } = data;
 
         // Save the token to localStorage
         localStorage.setItem("token", token);
+        localStorage.setItem("name",data.user.name)
 
         // Redirect or perform any necessary actions after successful login
         console.log("Login successful! Token saved to localStorage.");
+        navigate("/interview")
+        
       } else {
         // Handle login error, e.g., display an error message
         console.error("Login failed.");

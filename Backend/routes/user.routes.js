@@ -65,7 +65,7 @@ userRouter.post('/generate-questions', auth,async (req, res) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer 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`,
+          'Authorization': `Bearer ${process.env.OPEN_API}`,
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
@@ -75,8 +75,8 @@ userRouter.post('/generate-questions', auth,async (req, res) => {
       });
   
       const responseBody = await response.json();
-      const answer = responseBody.choices[0].text;
-  
+      
+      console.log(responseBody)
       
       console.log(responseBody.choices[0].message.content);
       res.json({ text: responseBody.choices[0].message.content});

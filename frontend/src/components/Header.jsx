@@ -1,16 +1,34 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import ButtonOutline from "./ButtonOutline";
 import logo from "./images/logo.png";
+
 const Header = () => {
   const [activeLink, setActiveLink] = useState(null);
   const [scrollActive, setScrollActive] = useState(false);
+  const [token, setToken] = useState(""); // Store the token from local storage
+
   useEffect(() => {
+    // Check if the token is available in local storage
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+
     window.addEventListener("scroll", () => {
       setScrollActive(window.scrollY > 20);
     });
   }, []);
+
+  const handleLogout = () => {
+    // Remove the token from local storage and state
+    localStorage.removeItem("token");
+    
+    setToken("");
+  };
+
   return (
     <>
       <header
@@ -64,19 +82,29 @@ const Header = () => {
             </LinkScroll>
           </ul>
           <div className="col-start-10 col-end-12 font-medium flex justify-end items-center">
-            <Link to="/login">
-              <span className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
-                Sign In
-              </span>
-            </Link>
-            <Link to="/signup">
-              <ButtonOutline>Sign Up</ButtonOutline>
-            </Link>
+            {token ? ( // If token is available, show Logout and user's name
+              <>
+                <span className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
+                 {localStorage.getItem("name")}
+                </span>
+                <ButtonOutline onClick={handleLogout}>Logout</ButtonOutline>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <span className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
+                    Sign In
+                  </span>
+                </Link>
+                <Link to="/signup">
+                  <ButtonOutline>Sign Up</ButtonOutline>
+                </Link>
+              </>
+            )}
           </div>
         </nav>
       </header>
       {/* Mobile Navigation */}
-
       <nav className="fixed lg:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t ">
         <div className="bg-white-500 sm:px-3">
           <ul className="flex w-full justify-center items-center text-black-500">
