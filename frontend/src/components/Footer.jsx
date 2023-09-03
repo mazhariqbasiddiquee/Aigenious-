@@ -9,7 +9,6 @@ const Footer = () => {
       <div className="max-w-screen-xl w-full mx-auto px-6 sm:px-8 lg:px-16 grid grid-rows-6 sm:grid-rows-1 grid-flow-row sm:grid-flow-col grid-cols-3 sm:grid-cols-12 gap-4">
         <div className="row-span-2 sm:col-span-4 col-start-1 col-end-4 sm:col-end-5 flex flex-col items-start ">
           <img className="h-12 w-auto mb-6" src={logo} alt="" />
-          {/* <h1 className="h-8 w-auto mb-6">LOGO</h1> */}
           <p className="mb-4">
             <strong className="font-medium">Algenius</strong> CareerReady: Your
             ultimate guide to mastering interviews and advancing your career.
@@ -37,21 +36,6 @@ const Footer = () => {
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
               Download{" "}
             </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
-              Pricing{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
-              Locations{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
-              Server{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
-              Countries{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
-              Blog{" "}
-            </li>
           </ul>
         </div>
         <div className="row-span-2 sm:col-span-2 sm:col-start-9 sm:col-end-11 flex flex-col">
@@ -59,9 +43,6 @@ const Footer = () => {
             Engage
           </p>
           <ul className="text-black-500">
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
-              LaslesVPN ?{" "}
-            </li>
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
               FAQ{" "}
             </li>{" "}
@@ -76,19 +57,6 @@ const Footer = () => {
             </li>
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
               Terms of Service{" "}
-            </li>
-          </ul>
-        </div>
-        <div className="row-span-2 sm:col-span-2 sm:col-start-11 sm:col-end-13 flex flex-col">
-          <p className="text-black-600 mb-4 font-medium text-lg text-left">
-            Earn Money
-          </p>
-          <ul className="text-black-500">
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
-              Affiliate{" "}
-            </li>
-            <li className="my-2 hover:text-orange-500 cursor-pointer transition-all text-left">
-              Become Partner{" "}
             </li>
           </ul>
         </div>
