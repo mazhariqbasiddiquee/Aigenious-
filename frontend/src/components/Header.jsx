@@ -10,6 +10,7 @@ const Header = () => {
   const [token, setToken] = useState(""); // Store the token from local storage
   const [userName, setUserName] = useState(""); // Store the user's name from local storage
 
+  
   useEffect(() => {
     // Check if the token is available in local storage
     const storedToken = localStorage.getItem("token");
@@ -17,17 +18,13 @@ const Header = () => {
       setToken(storedToken);
     }
 
-
     // Check if the user's name is available in local storage
     const storedUserName = localStorage.getItem("name");
     if (storedUserName) {
       setUserName(storedUserName);
     }
+  }, [token]);
 
-    window.addEventListener("scroll", () => {
-      setScrollActive(window.scrollY > 20);
-    });
-  }, [token,userName]);
 
   const handleLogout = () => {
     // Remove the token and name from local storage and state

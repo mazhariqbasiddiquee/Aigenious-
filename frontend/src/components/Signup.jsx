@@ -22,7 +22,7 @@ function SignupForm() {
       // Send the data as key-value pairs
       console.log(formData);
       const response = await fetch(
-        "http://localhost:8080/user/register",
+        "https://olive-vulture-shoe.cyclic.app/user/register",
         {
           method: "POST",
           headers: {

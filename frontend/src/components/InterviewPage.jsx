@@ -101,7 +101,7 @@ const InterviewPage = () => {
       }
 
       const response = await fetch(
-        "http://localhost:8080/user/generate-questions",
+        "https://olive-vulture-shoe.cyclic.app/user/generate-questions",
         {
           method: "POST",
           headers: {
