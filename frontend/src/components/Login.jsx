@@ -22,7 +22,7 @@ function LoginForm() {
     try {
       // Send the login data as a POST request
       const response = await fetch(
-        " https://raspberry-seagull-gear.cyclic.app/user/login",
+        "http://localhost:8080/user/login",
         {
           method: "POST",
           headers: {
