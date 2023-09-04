@@ -101,7 +101,7 @@ const InterviewPage = () => {
       }
 
       const response = await fetch(
-        "https://gray-wandering-parrot.cyclic.app/user/generate-questions",
+        "https://raspberry-seagull-gear.cyclic.app/user/generate-questions",
         {
           method: "POST",
           headers: {
