@@ -22,7 +22,7 @@ function LoginForm() {
     try {
       // Send the login data as a POST request
       const response = await fetch(
-        " http://localhost:8080/user/login",
+        " https://gray-wandering-parrot.cyclic.app/user/login",
         {
           method: "POST",
           headers: {

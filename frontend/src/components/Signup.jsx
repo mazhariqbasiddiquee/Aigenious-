@@ -22,7 +22,7 @@ function SignupForm() {
       // Send the data as key-value pairs
       console.log(formData);
       const response = await fetch(
-        "https://loincloth-lamb.cyclic.app/user/register",
+        " https://gray-wandering-parrot.cyclic.app/user/register",
         {
           method: "POST",
           headers: {
