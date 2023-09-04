@@ -4,12 +4,14 @@ const fetch =import("node-fetch")
 const connection =require("./db")
 const userRouter=require("./routes/user.routes")
 const questionRouter=require("./routes/question.routes")
+const path=require("path")
 require('dotenv').config();
 
 const app=express()
 
 app.use(cors())
 app.use(express.json())
+
 
 
 app.use("/user",userRouter)

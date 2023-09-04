@@ -101,7 +101,7 @@ const InterviewPage = () => {
       }
 
       const response = await fetch(
-        "https://raspberry-seagull-gear.cyclic.app/user/generate-questions",
+        "http://localhost:8080/user/generate-questions",
         {
           method: "POST",
           headers: {

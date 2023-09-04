@@ -6,6 +6,8 @@ const QuestionModel=require("../model.js/question.model")
 const bcrypt = require('bcrypt')
 const auth=require("../middleware/auth.middleare")
 var jwt = require('jsonwebtoken')
+const cors=require("cors")
+
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 
